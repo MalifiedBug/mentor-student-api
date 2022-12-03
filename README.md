@@ -5,7 +5,7 @@ Students can be assigned to mentor;
 All the duplicates from Students collection will be removed using aggregation methods; when using the GET command
 
 
-#Endpoints
+# Endpoints
 
 1) GET - "/" - API home 
 2) GET - "/students" - Get all students from db
@@ -16,11 +16,11 @@ All the duplicates from Students collection will be removed using aggregation me
         "course": "MERN Stack",
         "mentorAssigned": "mentorname"
     }
-5)POST - "/mentor" - Post single mentor data to db;
+5) POST - "/mentor" - Post single mentor data to db;
         Schema: {"name": "name",
         "email": "email@gmail.com",
         "course": "MERN Stack",
         "studentAssigned": [all students in array]
     }
     
- 6)POST - "/studentstomentor" - Post registerd students to a mentor; Only registered students will be able to assign a mentor; non-registered will be filterd out.
+6) POST - "/studentstomentor" - Post registerd students to a mentor; Only registered students will be able to assign a mentor; non-registered will be filterd out.
