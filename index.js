@@ -80,11 +80,15 @@ app.post("/mentor",async(req,res)=>{
     const name = req.body.name;
     const email = req.body.email;
     const course = req.body.course;
-    const studentsAssigned = studentsAssigned;
+    const country = req.body.country;
+    const about = req.body.about;
+    const acceptedTerms  = req.body.acceptedTerms;
+    const image = req.body.image;
+    const studentsAssigned = req.body.studentsAssigned;
     const mentor = await getMentorByName(name)
     if(!mentor){
         try {
-            const data = await insertMentor(name, email, course, studentsAssigned);
+            const data = await insertMentor(name, email, course, studentsAssigned,acceptedTerms,image,country,about);
             console.log(data)
             res.send(data)      
         } catch (error) {
@@ -93,8 +97,7 @@ app.post("/mentor",async(req,res)=>{
         }
     }else{
         res.send({msg:"mentor already registered"})
-    }
-    
+    }    
 })
 
 app.post("/studentstomentor", async (req, res) => {

@@ -13,12 +13,17 @@ export function insertStudentToMentor(dbmentor, student) {
             }
         );
 }
-export function insertMentor(name, email, course, studentsAssigned) {
+export function insertMentor(name, email, course, studentsAssigned,image,country,about,acceptedTerms) {
     return client.db("Mentor-Student").collection("Mentor").insertOne({
         name: name,
         email: email,
         course: course,
-        studentsAssigned: studentsAssigned
+        image,
+        country,
+        about,
+        course,
+        acceptedTerms,
+        studentsAssigned: studentsAssigned,
     });
 }
 export function getMentorByName(name) {
