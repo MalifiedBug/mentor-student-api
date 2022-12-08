@@ -26,6 +26,27 @@ export function insertMentor(name, email, course, studentsAssigned,image,country
         studentsAssigned: studentsAssigned,
     });
 }
+
+export function updateMentor(initaialName, name, email, course, studentsAssigned,image,country,about,acceptedTerms){
+    return client.db("Mentor-Student").collection("Mentor").updateOne({name:initialName},{
+        $set:{
+            name: name,
+            email: email,
+            course: course,
+            image:image,
+            country:country,
+            about:about,
+            course:course,
+            acceptedTerms:acceptedTerms,
+            studentsAssigned: studentsAssigned,
+        }
+    })
+}
+
+
+
+
+
 export function getMentorByName(name) {
     return client.db("Mentor-Student").collection("Mentor").findOne({ name: name });
 }
