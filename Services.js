@@ -18,11 +18,11 @@ export function insertMentor(name, email, course, studentsAssigned,image,country
         name: name,
         email: email,
         course: course,
-        image,
-        country,
-        about,
-        course,
-        acceptedTerms,
+        image:image,
+        country:country,
+        about:about,
+        course:course,
+        acceptedTerms:acceptedTerms,
         studentsAssigned: studentsAssigned,
     });
 }
