@@ -43,6 +43,10 @@ export function updateMentor(initialName, name, email, course, studentsAssigned,
     })
 }
 
+export function deleteMentorByName(name){
+    return client.db("Mentor-Student").collection("Mentor").deleteOne({ name: name });
+}
+
 
 
 

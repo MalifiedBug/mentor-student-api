@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import cors from 'cors'
 import express, { response } from "express"; 
 import * as dotenv from 'dotenv'; 
-import { getAllStudents, getStudentByName, insertStudent, getAllMentors, getMentorByName, insertMentor, insertStudentToMentor } from "./Services.js";
+import { getAllStudents, getStudentByName, insertStudent, getAllMentors, getMentorByName, insertMentor, insertStudentToMentor,deleteMentorByName, updateMentor } from "./Services.js";
 
 
 
@@ -148,12 +148,18 @@ app.post("/studentstomentor", async (req, res) => {
       }    
   })
 
+
     res.send({
       msg: `Added: ${added}; Not registered students: ${notRegistered}`,
     });
   }
 });
 
+app.delete("/deletementor/:name",async(req,res)=>{
+  const mentor = req.params['name']
+  const deleteMentor = await deleteMentorByName(mentor);
+  res.send({msg:"deleted successfully"})
+})
 
 
 
