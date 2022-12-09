@@ -27,8 +27,20 @@ export function updateMentor(initialName,rest){
     })
 }
 
+export function updateStudent(initialName,rest){
+    return client.db("Mentor-Student").collection("Student").updateOne({name:initialName},{
+        $set:
+            rest
+        
+    })
+}
+
 export function deleteMentorByName(name){
     return client.db("Mentor-Student").collection("Mentor").deleteOne({ name: name });
+}
+
+export function deleteStudentByName(name){
+    return client.db("Mentor-Student").collection("Student").deleteOne({ name: name });
 }
 
 

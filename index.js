@@ -136,10 +136,32 @@ app.put("/editmentor",async(req,res)=>{
   }    
 })
 
+app.put("/editstudent",async(req,res)=>{
+  const{initialName,...rest}= req.body; 
+  console.log(rest)
+  const student = await getStudentByName(initialName)
+  if(student){
+      try {
+          const data = await updateStudent(initialName,rest);
+          res.send({msg:"mentor updated successfully"})      
+      } catch (error) {
+          res.send({msg:error})        
+      }
+  }else{
+      res.send({msg:"mentor not registered"})
+  }    
+})
+
 app.delete("/deletementor/:name",async(req,res)=>{
   const mentor = req.params['name']
   const deleteMentor = await deleteMentorByName(mentor);
   res.send({msg:"deleted successfully",deleteMentor})
+})
+
+app.delete("/deletestudent/:name",async(req,res)=>{
+  const student = req.params['name']
+  const deleteStudent = await deleteStudentByName(mentor);
+  res.send({msg:"deleted successfully",deleteStudent})
 })
 
 
