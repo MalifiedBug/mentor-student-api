@@ -47,6 +47,9 @@ export async function getAllMentors() {
                 "name": 1,
                 "email": 1,
                 "course": 1,
+                "country":1,
+                "about":1,
+                "image":1,
                 "studentAssigned": {
                     "$setUnion": [
                         "$studentAssigned", []
