@@ -46,15 +46,13 @@ app.get("/students",async (req,res)=>{
 })
 
 app.post("/student", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const course = req.body.course;
-  const mentorAssigned = req.body.mentorAssigned;
+  const newStudent = req.data;
+  const name = req.data.name;
 
   const student = await getStudentByName(name);
   if (!student) {
     try {
-      const data = await insertStudent(name, email, course, mentorAssigned);
+      const data = await insertStudent(newStudent);
       console.log(data);
       res.send(data);
     } catch (error) {
@@ -143,12 +141,12 @@ app.put("/editstudent",async(req,res)=>{
   if(student){
       try {
           const data = await updateStudent(initialName,rest);
-          res.send({msg:"mentor updated successfully"})      
+          res.send({msg:"student updated successfully"})      
       } catch (error) {
           res.send({msg:error})        
       }
   }else{
-      res.send({msg:"mentor not registered"})
+      res.send({msg:"student not registered"})
   }    
 })
 

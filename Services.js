@@ -72,16 +72,11 @@ export async function getAllMentors() {
     ]).toArray();
 }
 // return client.db("Mentor-Student").collection("Mentor").find({}).toArray();
-export function insertStudent(name, email, course, mentorAssigned) {
+export function insertStudent(newStudent) {
     return client
         .db("Mentor-Student")
         .collection("Student")
-        .insertOne({
-            name: name,
-            email: email,
-            course: course,
-            mentorAssigned: mentorAssigned,
-        });
+        .insertOne(newStudent);
 }
 export function getStudentByName(name) {
     return client.db("Mentor-Student").collection("Student").findOne({ name: name });
