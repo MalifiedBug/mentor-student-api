@@ -121,12 +121,7 @@ app.post("/studentstomentor", async (req, res) => {
         notRegistered.push(student);
         console.log(student)
       }
-    });
-
-   
-
-
-   
+    });  
   }
 });
 
@@ -146,10 +141,8 @@ app.put("/editmentor",async(req,res)=>{
   if(mentor){
       try {
           const data = await updateMentor(initialName, name, email, course, studentsAssigned,acceptedTerms,image,country,about);
-          console.log(data)
           res.send({msg:"mentor updated successfully"})      
       } catch (error) {
-          console.log(error);
           res.send({msg:error})        
       }
   }else{
