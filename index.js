@@ -127,6 +127,7 @@ app.post("/studentstomentor", async (req, res) => {
 
 app.put("/editmentor",async(req,res)=>{
   const[initialName,...rest] = req.body; 
+  console.log(rest)
   const mentor = await getMentorByName(initialName)
   if(mentor){
       try {
