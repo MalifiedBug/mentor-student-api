@@ -126,21 +126,11 @@ app.post("/studentstomentor", async (req, res) => {
 });
 
 app.put("/editmentor",async(req,res)=>{
-  const initialName = req.body.initialName;
-  const name = req.body.name;
-  const email = req.body.email;
-  const course = req.body.course;
-  const country = req.body.country;
-  const about = req.body.about;
-  const acceptedTerms  = req.body.acceptedTerms;
-  const image = req.body.image;
-  const studentsAssigned = req.body.studentsAssigned;
-  console.log(initialName);
+  const[initialName,...rest] = req.body; 
   const mentor = await getMentorByName(initialName)
-  console.log(mentor)
   if(mentor){
       try {
-          const data = await updateMentor(initialName, name, email, course, studentsAssigned,acceptedTerms,image,country,about);
+          const data = await updateMentor(rest);
           res.send({msg:"mentor updated successfully"})      
       } catch (error) {
           res.send({msg:error})        
