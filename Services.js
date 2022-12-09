@@ -52,8 +52,10 @@ export function deleteMentorByName(name){
 
 
 export function getMentorByName(name) {
+    
     return client.db("Mentor-Student").collection("Mentor").findOne({ name: name });
 }
+
 export async function getAllMentors() {
     return await client.db("Mentor-Student").collection("Mentor").aggregate([
         {

@@ -123,42 +123,44 @@ app.post("/studentstomentor", async (req, res) => {
       }
     });
 
-    app.put("/editmentor",async(req,res)=>{
-      const initialName = req.body.initialName;
-      const name = req.body.name;
-      const email = req.body.email;
-      const course = req.body.course;
-      const country = req.body.country;
-      const about = req.body.about;
-      const acceptedTerms  = req.body.acceptedTerms;
-      const image = req.body.image;
-      const studentsAssigned = req.body.studentsAssigned;
-      const mentor = await getMentorByName(initialName)
-      if(mentor){
-          try {
-              const data = await updateMentor(initalName, name, email, course, studentsAssigned,acceptedTerms,image,country,about);
-              console.log(data)
-              res.send({msg:"mentor updated successfully"})      
-          } catch (error) {
-              console.log(error);
-              res.send({msg:error})        
-          }
-      }else{
-          res.send({msg:"mentor not registered"})
-      }    
-  })
+   
 
 
-    res.send({
-      msg: `Added: ${added}; Not registered students: ${notRegistered}`,
-    });
+   
   }
 });
+
+app.put("/editmentor",async(req,res)=>{
+  const initialName = req.body.initialName;
+  const name = req.body.name;
+  const email = req.body.email;
+  const course = req.body.course;
+  const country = req.body.country;
+  const about = req.body.about;
+  const acceptedTerms  = req.body.acceptedTerms;
+  const image = req.body.image;
+  const studentsAssigned = req.body.studentsAssigned;
+  console.log(initialName);
+  const mentor = await getMentorByName(initialName)
+  console.log(mentor)
+  if(mentor){
+      try {
+          const data = await updateMentor(initialName, name, email, course, studentsAssigned,acceptedTerms,image,country,about);
+          console.log(data)
+          res.send({msg:"mentor updated successfully"})      
+      } catch (error) {
+          console.log(error);
+          res.send({msg:error})        
+      }
+  }else{
+      res.send({msg:"mentor not registered"})
+  }    
+})
 
 app.delete("/deletementor/:name",async(req,res)=>{
   const mentor = req.params['name']
   const deleteMentor = await deleteMentorByName(mentor);
-  res.send({msg:"deleted successfully"})
+  res.send({msg:"deleted successfully",deleteMentor})
 })
 
 
