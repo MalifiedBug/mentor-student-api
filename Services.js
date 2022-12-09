@@ -27,11 +27,11 @@ export function insertMentor(name, email, course, studentsAssigned,image,country
     });
 }
 
-export function updateMentor(rest){
+export function updateMentor(initialName,rest){
     return client.db("Mentor-Student").collection("Mentor").updateOne({name:initialName},{
-        $set:{
+        $set:
             rest
-        }
+        
     })
 }
 
