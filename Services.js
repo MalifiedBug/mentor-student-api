@@ -36,7 +36,6 @@ export function updateMentor(initialName, name, email, course, studentsAssigned,
             image:image,
             country:country,
             about:about,
-            course:course,
             acceptedTerms:acceptedTerms,
             studentsAssigned: studentsAssigned,
         }
