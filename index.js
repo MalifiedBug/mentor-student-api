@@ -78,19 +78,14 @@ app.get("/mentors",async (req,res)=>{
 
 app.post("/mentor",async(req,res)=>{
     const name = req.body.name;
-    const email = req.body.email;
-    const course = req.body.course;
-    const country = req.body.country;
-    const about = req.body.about;
-    const acceptedTerms  = req.body.acceptedTerms;
-    const image = req.body.image;
-    const studentsAssigned = req.body.studentsAssigned;
+    const data = req.body;  
+    console.log(name,data)  
     const mentor = await getMentorByName(name)
     if(!mentor){
         try {
-            const data = await insertMentor(name, email, course, studentsAssigned,acceptedTerms,image,country,about);
-            console.log(data)
-            res.send(data)      
+            const dataa = await insertMentor(data);
+            console.log(dataa)
+            res.send(dataa)      
         } catch (error) {
             console.log(error);
             res.send({msg:error})        
