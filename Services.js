@@ -30,7 +30,7 @@ export function updateMentor(initialName,rest){
 export function updateStudent(initialName,rest){
     return client.db("Mentor-Student").collection("Student").updateOne({name:initialName},{
         $set:
-            rest
+            rest 
         
     })
 }

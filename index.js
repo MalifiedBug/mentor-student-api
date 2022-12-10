@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import cors from 'cors'
 import express, { response } from "express"; 
 import * as dotenv from 'dotenv'; 
-import { getAllStudents, getStudentByName, insertStudent, getAllMentors, getMentorByName, insertMentor, insertStudentToMentor,deleteMentorByName, updateMentor } from "./Services.js";
+import { getAllStudents, getStudentByName, insertStudent, getAllMentors, getMentorByName, insertMentor, insertStudentToMentor,deleteMentorByName, updateMentor, deleteStudentByName } from "./Services.js";
 
 
 
@@ -141,9 +141,9 @@ app.put("/editstudent",async(req,res)=>{
   if(student){
       try {
           const data = await updateStudent(initialName,rest);
-          res.send({msg:"student updated successfully"})      
+          res.send({msg:"student updated successfully",data})      
       } catch (error) {
-          res.send({msg:error})        
+          res.send({msg:error,err:"update error"})        
       }
   }else{
       res.send({msg:"student not registered"})
@@ -158,7 +158,7 @@ app.delete("/deletementor/:name",async(req,res)=>{
 
 app.delete("/deletestudent/:name",async(req,res)=>{
   const student = req.params['name']
-  const deleteStudent = await deleteStudentByName(mentor);
+  const deleteStudent = await deleteStudentByName(student);
   res.send({msg:"deleted successfully",deleteStudent})
 })
 
